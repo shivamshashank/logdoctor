@@ -1,0 +1,28 @@
+{
+    "name": "logdoctor-cli",
+    "version": "0.1.0",
+    "description": "Privacy-first AI log analysis in your terminal.",
+    "main": "src/cli.js",
+    "bin": {
+        "logdoctor": "./src/cli.js"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "cli",
+        "ai",
+        "logs",
+        "devops",
+        "debug"
+    ],
+    "author": "Shivam Shashank",
+    "license": "MIT",
+    "dependencies": {
+        "chalk": "^5.3.0",
+        "commander": "^12.0.0",
+        "inquirer": "^9.2.12",
+        "ora": "^8.0.1"
+    },
+    "type": "module"
+}

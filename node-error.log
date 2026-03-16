@@ -1,0 +1,11 @@
+/Users/testuser/dev/my-app/node_modules/express/lib/router/index.js:281
+Error: Failed to lookup view "error" in views directory "/Users/testuser/dev/my-app/views"
+    at Function.render (/Users/testuser/dev/my-app/node_modules/express/lib/application.js:580:17)
+    at ServerResponse.render (/Users/testuser/dev/my-app/node_modules/express/lib/response.js:1012:7)
+    at /Users/testuser/dev/my-app/app.js:40:7
+    at Layer.handle_error (/Users/testuser/dev/my-app/node_modules/express/lib/router/layer.js:71:5)
+    at trim_prefix (/Users/testuser/dev/my-app/node_modules/express/lib/router/index.js:315:13)
+    at /Users/testuser/dev/my-app/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/testuser/dev/my-app/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/testuser/dev/my-app/node_modules/express/lib/router/index.js:275:10)
+    at Layer.handle [as handle_request] (/Users/testuser/dev/my-app/node_modules/express/lib/router/layer.js:95:5)

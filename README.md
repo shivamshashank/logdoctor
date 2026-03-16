@@ -5,9 +5,9 @@
 ![GitHub issues](https://img.shields.io/github/issues/shivamshashank/logdoctor)
 ![License](https://img.shields.io/github/license/shivamshashank/logdoctor)
 
-**LogDoctor** is an open-source AI tool that **diagnoses production logs and explains incidents instantly.**
+**LogDoctor** is an open-source, privacy-first CLI tool that **diagnoses production logs and explains incidents instantly right in your terminal.**
 
-💡 Paste logs → get root cause analysis.
+💡 Pipe logs → Scrub PII Locally → Get Root Cause Analysis.
 
 🔗 **GitHub Repository:**
 https://github.com/shivamshashank/logdoctor
@@ -16,155 +16,95 @@ https://github.com/shivamshashank/logdoctor
 
 # ✨ What LogDoctor Does
 
-LogDoctor analyzes application logs using AI and produces a clear incident report including:
+LogDoctor analyzes application logs using AI to produce clear incident reports. Unlike web-based AI wrappers, LogDoctor runs securely in your terminal and **locally scrubs sensitive data (PII, secrets, API keys)** before anything is sent to the LLM. 
 
-🔍 **Root cause analysis**
-📊 **Incident timeline**
-⚠️ **Error explanations**
-🛠 **Suggested fixes**
-
-Instead of manually scanning thousands of log lines, LogDoctor summarizes the problem in seconds.
+*   🔍 **Root cause analysis**
+*   🛡️ **Local PII & Secrets Scrubbing**
+*   🤖 **Bring Your Own Key (OpenAI, Gemini, Claude)**
+*   ⚠️ **Error explanations**
+*   🛠️ **Suggested code fixes**
 
 ---
 
 # 🚀 Demo
 
-Paste logs and get an explanation instantly.
+*(Add a GIF here showing you piping a messy log file into the CLI and getting a formatted markdown output)*
 
-Example logs:
-
-```
-[ERROR] database connection timeout
-[WARN] redis connection failed
-[ERROR] payment service unavailable
-```
-
-AI output:
-
-```
-Root Cause
-Database service unreachable.
-
-Impact
-Payment service failed due to DB outage.
-
-Suggested Fix
-Restart database container and verify port connectivity.
-```
+![LogDoctor CLI Demo](docs/images/demo.gif)
 
 ---
 
 # 🧠 Features
 
-✅ AI-powered log analysis
-✅ Root cause detection
-✅ Incident timeline generation
-✅ Error explanation engine
-✅ Developer dashboard
-✅ Example logs for testing
+*   **🔒 Local Data Sanitization:** Regular expressions automatically strip Emails, IP addresses, JWTs, and AWS Keys locally. `user@gmail.com` becomes `[REDACTED_EMAIL]`.
+*   **🔀 Multi-Model Support:** Choose your preferred AI engine: **OpenAI**, **Gemini**, or **Claude**.
+*   **🌍 Language Selection:** Choose the output language for explanations (e.g., English, Spanish, French) and specify your codebase language (Node.js, Python, Go) for tailored code fixes.
+*   **⚡ Blazing Fast Streaming:** Streams large log files efficiently in Node.js without crashing your terminal memory.
+*   **💻 Developer-Native Workflow:** No context switching. Get your fixes directly in the terminal where you debug.
 
 ---
 
 # 🧰 Tech Stack
 
-## 🎨 Frontend
-
-* Next.js
-* Tailwind CSS
-* shadcn UI
-
-## ⚙️ Backend
-
-* FastAPI
-* PostgreSQL
-
-## 🤖 AI
-
-* OpenAI API
-
-## 🔐 Authentication
-
-* NextAuth with GitHub login
+*   **Language:** Node.js / TypeScript
+*   **CLI Framework:** `commander`
+*   **Terminal UI:** `chalk` (colors), `ora` (spinners), `marked-terminal` (Markdown rendering)
+*   **AI SDKs:** `@google/generative-ai`, `openai`, `@anthropic-ai/sdk`
 
 ---
 
-# 🆓 Free Tier
+# ⚙️ Installation
 
-LogDoctor is **completely free for developers.**
+<details>
+<summary>Install LogDoctor (Recommended)</summary>
 
-Every user receives:
+Requires [Node.js v18+](https://nodejs.org/).
 
+**macOS / Linux**
+```bash
+npm install -g logdoctor-cli
 ```
-100 log analyses
+
+**Windows (PowerShell)**
+```powershell
+npm install -g logdoctor-cli
 ```
 
-There is **no premium plan.**
-
-The goal of this project is to build a **simple AI debugging assistant for developers.**
+</details>
 
 ---
 
-# 🏗 Project Structure
+# ⚙️ Run Locally (for Development)
 
-```
-logdoctor/
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/shivamshashank/logdoctor
+    cd logdoctor
+    ```
 
-frontend/
-backend/
-examples/
-docs/
-README.md
-```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
----
+3.  **Link the CLI:**
+    This command makes `logdoctor` available globally on your machine, pointing to your local source code.
+    ```bash
+    npm link
+    ```
 
-# ⚙️ Run Locally
+4.  **Run the tool:**
+    Now you can run the `logdoctor` command from any directory. Any changes you make to the code will be reflected immediately.
+    ```bash
+    # Configure your API key
+    logdoctor config
 
-### Clone the repository
+    # Analyze a log file
+    logdoctor analyze examples/node-error.log
 
-```
-git clone https://github.com/shivamshashank/logdoctor
-```
-
-### Start backend
-
-```
-cd backend
-pip install -r requirements.txt
-uvicorn main:app --reload
-```
-
-Backend runs on:
-
-```
-http://localhost:8000
-```
-
-### Start frontend
-
-```
-cd frontend
-npm install
-npm run dev
-```
-
-Frontend runs on:
-
-```
-http://localhost:3000
-```
-
----
-
-# 📄 Example Logs
-
-Try analyzing logs from:
-
-```
-examples/docker.log
-examples/kubernetes.log
-examples/node-error.log
-```
+    # Or pipe a file to the command
+    cat examples/pii-data.txt | logdoctor analyze
+    ```
 
 ---
 
