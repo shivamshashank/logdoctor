@@ -34,3 +34,13 @@ export async function getConfig() {
         return {};
     }
 }
+
+export async function clearConfig() {
+    try {
+        await fs.unlink(configFile);
+    } catch (error) {
+        if (error.code !== 'ENOENT') {
+            console.error('Error clearing config file:', error);
+        }
+    }
+}

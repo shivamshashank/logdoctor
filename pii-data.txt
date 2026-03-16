@@ -1,4 +1,0 @@
-Transaction for user test.user+alias@gmail.com failed.
-API Key used: AKIAIOSFODNN7EXAMPLE
-Please contact support with your details.
-User session token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c

@@ -16,13 +16,11 @@ https://github.com/shivamshashank/logdoctor
 
 # ✨ What LogDoctor Does
 
-LogDoctor analyzes application logs using AI to produce clear incident reports. Unlike web-based AI wrappers, LogDoctor runs securely in your terminal and **locally scrubs sensitive data (PII, secrets, API keys)** before anything is sent to the LLM. 
-
-*   🔍 **Root cause analysis**
-*   🛡️ **Local PII & Secrets Scrubbing**
-*   🤖 **Bring Your Own Key (OpenAI, Gemini, Claude)**
-*   ⚠️ **Error explanations**
-*   🛠️ **Suggested code fixes**
+LogDoctor analyzes application logs using AI to produce clear incident reports directly in your terminal.
+It focuses on three core pillars:
+1. **Local Data Sanitization (Privacy First)**
+2. **Multi-Model AI Diagnosis**
+3. **Developer-Native Workflow**
 
 ---
 
@@ -36,11 +34,14 @@ LogDoctor analyzes application logs using AI to produce clear incident reports. 
 
 # 🧠 Features
 
-*   **🔒 Local Data Sanitization:** Regular expressions automatically strip Emails, IP addresses, JWTs, and AWS Keys locally. `user@gmail.com` becomes `[REDACTED_EMAIL]`.
-*   **🔀 Multi-Model Support:** Choose your preferred AI engine: **OpenAI**, **Gemini**, or **Claude**.
-*   **🌍 Language Selection:** Choose the output language for explanations (e.g., English, Spanish, French) and specify your codebase language (Node.js, Python, Go) for tailored code fixes.
-*   **⚡ Blazing Fast Streaming:** Streams large log files efficiently in Node.js without crashing your terminal memory.
-*   **💻 Developer-Native Workflow:** No context switching. Get your fixes directly in the terminal where you debug.
+### 1. 🛡️ Local Data Sanitization (Privacy First)
+Regular expressions automatically strip Emails, IP addresses, JWTs, and AWS Keys locally. `user@gmail.com` becomes `[REDACTED_EMAIL]`. Your sensitive data never leaves your machine.
+
+### 2. 🤖 Multi-Model AI Diagnosis
+Bring your own key (BYOK). Choose your preferred AI engine—**OpenAI**, **Gemini**, or **Claude**—to pinpoint the root cause of the error and generate a suggested code fix.
+
+### 3. 💻 Developer-Native Workflow
+No context switching. Pipe messy, large log files directly into the CLI (e.g., `cat error.log | logdoctor analyze`) and get color-coded, formatted explanations directly in the terminal where you debug.
 
 ---
 
@@ -98,6 +99,9 @@ npm install -g logdoctor-cli
     ```bash
     # Configure your API key
     logdoctor config
+
+    # Clear your stored configuration (log out)
+    logdoctor logout
 
     # Analyze a log file
     logdoctor analyze examples/node-error.log

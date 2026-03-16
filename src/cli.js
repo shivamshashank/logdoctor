@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import { handleConfigure } from './configure.js';
+import { handleConfigure, handleLogout } from './configure.js';
 import { handleAnalyze } from './analyze.js';
 
 const program = new Command();
@@ -15,6 +15,11 @@ program
     .command('config')
     .description('Configure your AI provider and API key.')
     .action(handleConfigure);
+
+program
+    .command('logout')
+    .description('Clear your stored AI provider and API key.')
+    .action(handleLogout);
 
 program
     .command('analyze')

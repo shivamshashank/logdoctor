@@ -1,5 +1,5 @@
 import inquirer from 'inquirer';
-import { saveConfig, getConfig } from './config.js';
+import { saveConfig, getConfig, clearConfig } from './config.js';
 import chalk from 'chalk';
 
 export async function handleConfigure() {
@@ -29,4 +29,9 @@ export async function handleConfigure() {
 
     await saveConfig(newConfig);
     console.log(chalk.green('✅ Configuration saved successfully!'));
+}
+
+export async function handleLogout() {
+    await clearConfig();
+    console.log(chalk.green('✅ Configuration cleared successfully. You are now logged out.'));
 }

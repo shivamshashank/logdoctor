@@ -1,0 +1,81 @@
+====================================================================
+LOGDOCTOR ENTERPRISE SECURITY PIPELINE - COMPREHENSIVE TEST DATA
+====================================================================
+
+--- 1. PII & PERSONAL DATA ---
+User profile updated for test.user+alias@gmail.com
+Contact info saved: Phone +1-800-555-0199, DOB: 1990-12-31
+Background check failed for SSN: 123-45-6789, UK NINO: AB 12 34 56 C, Canada SIN: 123-456-789
+Device registered from IPV4: 192.168.1.100, IPV6: 2001:0db8:85a3:0000:0000:8a2e:0370:7334
+Hardware mapped to MAC Address: 00:1A:2B:3C:4D:5E
+
+--- 2. FINANCIAL & CREDIT CARDS ---
+Payment processed for Visa: 4111222233334444
+Recurring billing charged to Mastercard: 5555444433332222
+Failed charge on Amex: 341234567890123
+Wire transfer bounced for IBAN: GB90BARC20152512345678
+Stripe standard payment error for sk_test_aaaaaaaaaaaaaaaaaaaaaaaa
+Square webhook sync failed: sq0csp-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+--- 3. CRYPTOCURRENCY ---
+Customer payout sent to BTC wallet: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa
+Ethereum smart contract error at 0x71C7656EC7ab88b098defB751B7401B5f6d8976F
+Dogecoin tipping bot triggered: D7aabc123def456ghi789jkl012mno345p
+
+--- 4. CLOUD PROVIDERS ---
+AWS API request unauthorized using AKIAIOSFODNN7EXAMPLE
+GCP Maps API quota exceeded: AIzaSyAqwertyuiop1234567890asdfghjkl_zxc
+GCP Service Account impersonated: my-app@my-project.iam.gserviceaccount.com
+Azure blob storage access denied: abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwx
+
+--- 5. AI PROVIDERS ---
+OpenAI API rate limit hit: sk-abc123def456ghi789jkl012mno345pqr678stu901vwx234
+Anthropic Claude timeout for sk-ant-api03-abcdefghijklmnopqrstuvwxyz1234567890abcdefghijklmnopq
+Pinecone DB disconnected: 12345678-1234-1234-1234-123456789012
+
+--- 6. GIT & CI/CD TOKENS ---
+GitHub webhook failed using PAT: ghp_000000000000000000000000000000000000
+GitLab pipeline error with token: glpat-00000000000000000000
+NPM publish failed. Token npm_000000000000000000000000000000000000 is invalid.
+Docker pull unauthorized: auths { "auth": "dGVzdDp0ZXN0cGFzc3dvcmQ=" }
+
+--- 7. SOCIAL & COMMUNICATIONS ---
+Slack Webhook Error: https://hooks.slack.com/services/TAAAAAAAA/BAAAAAAAA/aaaaaaaaaaaaaaaaaaaaaaaa
+Slack Bot disconnected: xoxb-11111111111-22222222222-aaaaaaaaaaaaaaaaaaaaaaaa
+Discord Webhook Error: https://discord.com/api/webhooks/123456789012345678/00000000000000000000000000000000000000000000000000000000000000000000
+Twilio Voice rate limit: SKdeadbeefdeadbeefdeadbeefdeadbeef
+
+--- 8. SAAS & OBSERVABILITY ---
+Notion integration sync failed: secret_abcdefghijklmnopqrstuvwxyz12345678901234567
+Datadog agent dropped metrics: 1234567890abcdef1234567890abcdef
+Sentry trace missing auth: sntrys_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
+
+--- 9. DATABASES ---
+Failed connecting to MongoDB: mongodb+srv://admin_user:superSecretPassword@cluster0.abcde.mongodb.net/testdb
+Postgres Timeout: postgres://postgres:db_pass_123@localhost:5432/myapp
+Redis cache eviction error: redis://default:redispw@localhost:6379
+Supabase real-time connection lost: https://abcdefghijklmnopqrst.supabase.co
+
+--- 10. AUTH, HEADERS & PRIVATE KEYS ---
+Uncaught Exception handling user session.
+User session token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+Authorization: Bearer very_secret_token_123xyz_abc
+Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==
+Failed to connect to internal API: https://admin:superSecretP@ssword123@api.internal.com/v1/users
+
+RSA key extraction failed:
+-----BEGIN RSA PRIVATE KEY-----
+MIIEowIBAAKCAQEAw2xyz...
+-----END RSA PRIVATE KEY-----
+
+--- 11. ENTROPY & HEURISTIC FALLBACKS ---
+Unknown binary blob detected:
+x-custom-header: ZXhhbXBsZWhpZ2hlbnRyb3B5c3RyaW5ndGhhdHNob3VsZGJlZGV0ZWN0ZWQxMjM0NTY3ODkw
+
+Configuration dumped to logs:
+{
+  "host": "localhost",
+  "port": 8080,
+  "database_password": "this_should_be_scrubbed_by_heuristics!",
+  "api_key": "some_random_value_that_doesnt_match_regex"
+}
