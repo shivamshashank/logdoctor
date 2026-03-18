@@ -24,7 +24,7 @@ It focuses on three core pillars:
 
 ---
 
-# 🚀 Demo
+#  Demo
 
 *(Add a GIF here showing you piping a messy log file into the CLI and getting a formatted markdown output)*
 
@@ -42,6 +42,12 @@ Bring your own key (BYOK). Choose your preferred AI engine—**OpenAI**, **Gemin
 
 ### 3. 💻 Developer-Native Workflow
 No context switching. Pipe messy, large log files directly into the CLI (e.g., `cat error.log | logdoctor analyze`) and get color-coded, formatted explanations directly in the terminal where you debug.
+
+### 4. 📴 100% Offline Mode (Ollama Support)
+For absolute zero-trust environments, LogDoctor integrates directly with **Ollama**. Analyze logs and generate fixes using local LLMs (like `llama3` or `mistral`) without a single byte of data leaving your machine.
+
+### 5. 📎 Context-Aware Debugging
+Provide source code files alongside your logs using the `-c` flag. LogDoctor will inject your codebase context into the prompt, resulting in hyper-accurate, project-specific code fixes.
 
 ---
 
@@ -72,6 +78,30 @@ npm install -g logdoctor-cli
 ```
 
 </details>
+
+---
+
+# 🚀 Quick Start
+
+```bash
+# Configure your AI provider and API key
+logdoctor config
+
+# Analyze a log file
+logdoctor analyze error.log
+
+# Or pipe a file
+cat error.log | logdoctor analyze
+
+# Analyze with custom instructions and save output to a file
+logdoctor analyze error.log -p "Focus on database connection errors" -o report.md
+
+# Attach source code context to help the AI fix the error
+logdoctor analyze error.log -c src/database.js
+
+# Clear your stored configuration (log out)
+logdoctor logout
+```
 
 ---
 
@@ -108,6 +138,9 @@ npm install -g logdoctor-cli
 
     # Or pipe a file to the command
     cat examples/pii-data.txt | logdoctor analyze
+
+    # Analyze with custom instructions and save the output
+    logdoctor analyze examples/node-error.log --prompt "Explain it to a junior dev" --output report.md
     ```
 
 ---

@@ -25,6 +25,9 @@ program
     .command('analyze')
     .description('Analyze a log file or piped input.')
     .argument('[file]', 'The path to the log file to analyze.')
+    .option('-c, --context <path>', 'Attach a source code file for better AI context.')
+    .option('-p, --prompt <prompt>', 'Add custom instructions for the AI.')
+    .option('-o, --output <path>', 'Save the Markdown report to a file.')
     .action(handleAnalyze);
 
 program.parse(process.argv);

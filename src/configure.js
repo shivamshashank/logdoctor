@@ -1,37 +1,44 @@
 import inquirer from 'inquirer';
-import { saveConfig, getConfig, clearConfig } from './config.js';
 import chalk from 'chalk';
+import { saveConfig, clearConfig } from './config.js';
 
 export async function handleConfigure() {
-    const currentConfig = await getConfig();
+    console.log(chalk.bold.blue('🩺 Welcome to LogDoctor Configuration\n'));
 
     const answers = await inquirer.prompt([
         {
             type: 'list',
             name: 'provider',
-            message: 'Which AI provider do you want to use?',
-            choices: ['openai', 'gemini', 'claude'],
-            default: currentConfig.provider || 'openai',
+            message: 'Select your AI provider:',
+            choices: ['openai', 'gemini', 'claude', 'ollama']
         },
         {
             type: 'password',
             name: 'apiKey',
-            message: (answers) => `Enter your ${answers.provider.toUpperCase()} API key (press Enter to keep existing):`,
+            message: 'Enter your API key (stored locally and securely):',
             mask: '*',
+            when: (answers) => answers.provider !== 'ollama'
         },
+        {
+            type: 'input',
+            name: 'model',
+            message: 'Enter your local Ollama model name (e.g., llama3, mistral):',
+            default: 'llama3',
+            when: (answers) => answers.provider === 'ollama'
+        }
     ]);
 
-    const newConfig = {
+    await saveConfig({
         provider: answers.provider,
-        // Only update the key if the user provided a new one
-        ...(answers.apiKey && { apiKey: answers.apiKey }),
-    };
+        apiKey: answers.apiKey || '',
+        model: answers.model || ''
+    });
 
-    await saveConfig(newConfig);
-    console.log(chalk.green('✅ Configuration saved successfully!'));
+    console.log(chalk.green('\n✅ Configuration saved successfully!'));
+    console.log('You can now use: ' + chalk.cyan('logdoctor analyze <file>'));
 }
 
 export async function handleLogout() {
     await clearConfig();
-    console.log(chalk.green('✅ Configuration cleared successfully. You are now logged out.'));
+    console.log(chalk.green('✅ Successfully logged out and cleared stored API keys.'));
 }
