@@ -28,6 +28,7 @@ program
     .option('-c, --context <path>', 'Attach a source code file for better AI context.')
     .option('-p, --prompt <prompt>', 'Add custom instructions for the AI.')
     .option('-o, --output <path>', 'Save the Markdown report to a file.')
+    .option('--verbose', 'Enable verbose logging (e.g., display exact AI prompts).')
     .action(handleAnalyze);
 
 program.parse(process.argv);

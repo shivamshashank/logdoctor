@@ -26,16 +26,14 @@ It focuses on three core pillars:
 
 #  Demo
 
-*(Add a GIF here showing you piping a messy log file into the CLI and getting a formatted markdown output)*
-
-![LogDoctor CLI Demo](docs/images/demo.gif)
+<video src="docs/demo.mov" controls="controls" autoplay="autoplay" loop="loop" muted="muted" width="100%"></video>
 
 ---
 
 # 🧠 Features
 
 ### 1. 🛡️ Local Data Sanitization (Privacy First)
-Regular expressions automatically strip Emails, IP addresses, JWTs, and AWS Keys locally. `user@gmail.com` becomes `[REDACTED_EMAIL]`. Your sensitive data never leaves your machine.
+Regular expressions and heuristic scanners automatically strip Emails, IP addresses, JWTs, AWS Keys, and application secrets (passwords, auth tokens) locally. `user@gmail.com` becomes `[REDACTED_EMAIL]`. Your sensitive data never leaves your machine.
 
 ### 2. 🤖 Multi-Model AI Diagnosis
 Bring your own key (BYOK). Choose your preferred AI engine—**OpenAI**, **Gemini**, or **Claude**—to pinpoint the root cause of the error and generate a suggested code fix.
@@ -48,6 +46,9 @@ For absolute zero-trust environments, LogDoctor integrates directly with **Ollam
 
 ### 5. 📎 Context-Aware Debugging
 Provide source code files alongside your logs using the `-c` flag. LogDoctor will inject your codebase context into the prompt, resulting in hyper-accurate, project-specific code fixes.
+
+### 6. 📜 Native JSON Log Support
+Automatically detects, un-stringifies, and beautifully formats nested JSON logs (like Pino or Winston) so the AI can read them accurately without choking on escaped characters.
 
 ---
 
@@ -98,6 +99,9 @@ logdoctor analyze error.log -p "Focus on database connection errors" -o report.m
 
 # Attach source code context to help the AI fix the error
 logdoctor analyze error.log -c src/database.js
+
+# View the exact prompts being sent to the AI (Verbose mode)
+logdoctor analyze error.log --verbose
 
 # Clear your stored configuration (log out)
 logdoctor logout

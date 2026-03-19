@@ -76,6 +76,13 @@ Your output MUST be concise, professional, and formatted EXACTLY using the follo
         }
     }
 
+    if (options.verbose) {
+        console.log(chalk.gray('\n--- [VERBOSE] System Prompt ---'));
+        console.log(chalk.gray(systemPrompt));
+        console.log(chalk.gray('\n--- [VERBOSE] User Prompt ---'));
+        console.log(chalk.gray(userPrompt + '\n'));
+    }
+
     try {
         const reportContent = await analyzeWithAI(config, systemPrompt, userPrompt);
 

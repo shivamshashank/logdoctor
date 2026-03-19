@@ -219,20 +219,72 @@ export function scrubObject(obj) {
 // ----------------------------------------------------------------------------
 // 4. AI Prompt Scrubber (Heuristic fallback)
 // ----------------------------------------------------------------------------
+const HEURISTIC_KEYWORDS = 'password|passwd|pwd|secret|api[_-]?key|access[_-]?token|auth[_-]?token|client[_-]?secret|session[_-]?id|bearer[_-]?token|private[_-]?key|config[_-]?key';
+
 export function scrubPrompt(prompt) {
     const cleaned = scrubText(prompt);
-    // Broadly removes values assigned to variables named 'password', 'secret', or 'key'
-    return cleaned.replace(/(password|secret|api[_-]?key)\s*[:=]\s*\S+/gi, '$1=[REDACTED_HEURISTIC]');
+
+    // 1. Catch assignment style (e.g. password=abc, secret: 123)
+    let heuristicCleaned = cleaned.replace(new RegExp(`(${HEURISTIC_KEYWORDS})\\s*[:=]\\s*["']?[^\\s"',}]+["']?`, 'gi'), '$1=[REDACTED_HEURISTIC]');
+
+    // 2. Catch JSON/Object style (e.g. "password": "abc")
+    heuristicCleaned = heuristicCleaned.replace(new RegExp(`["']?(${HEURISTIC_KEYWORDS})["']?\\s*:\\s*["'][^"']+["']`, 'gi'), '"$1": "[REDACTED_HEURISTIC]"');
+
+    return heuristicCleaned;
+}
+
+// ----------------------------------------------------------------------------
+// 4.5 JSON Un-stringifier (Parses nested stringified JSON logs)
+// ----------------------------------------------------------------------------
+export function unstringifyObject(obj) {
+    if (typeof obj === 'string') {
+        try {
+            const parsed = JSON.parse(obj);
+            if (typeof parsed === 'object' && parsed !== null) {
+                return unstringifyObject(parsed);
+            }
+        } catch (e) {
+            // Not valid JSON, return original string
+        }
+        return obj;
+    }
+    if (Array.isArray(obj)) return obj.map(unstringifyObject);
+    if (typeof obj === 'object' && obj !== null) {
+        const result = {};
+        for (const k in obj) {
+            result[k] = unstringifyObject(obj[k]);
+        }
+        return result;
+    }
+    return obj;
 }
 
 // ----------------------------------------------------------------------------
 // 5. Final Processing Pipeline 
 // ----------------------------------------------------------------------------
 export function processLog(log) {
-    // Step 1: Known pattern regex scrub
-    let clean = scrubText(log);
+    // Step 1: Detect, un-stringify, and format JSON logs line by line
+    const lines = log.split('\n');
+    const processedLines = lines.map(line => {
+        const trimmed = line.trim();
+        if (trimmed.startsWith('{') && trimmed.endsWith('}')) {
+            try {
+                let parsed = JSON.parse(trimmed);
+                parsed = unstringifyObject(parsed);
+                parsed = scrubObject(parsed); // Scrub structured data before formatting
+                return JSON.stringify(parsed, null, 2);
+            } catch (e) {
+                return line;
+            }
+        }
+        return line;
+    });
+    let processedLog = processedLines.join('\n');
 
-    // Step 2: High Entropy (unknown token) detection
+    // Step 2: Known pattern regex scrub
+    let clean = scrubText(processedLog);
+
+    // Step 3: High Entropy (unknown token) detection
     const secrets = detectHighEntropy(clean);
     const uniqueSecrets = [...new Set(secrets)]; // deduplicate
     for (const s of uniqueSecrets) {
@@ -240,7 +292,7 @@ export function processLog(log) {
         clean = clean.split(s).join('[REDACTED_ENTROPY_SECRET]');
     }
 
-    // Step 3: Heuristic Prompt Scrubbing
+    // Step 4: Heuristic Prompt Scrubbing
     clean = scrubPrompt(clean);
 
     return clean;

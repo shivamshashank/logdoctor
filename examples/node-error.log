@@ -1,11 +1,49 @@
-/Users/testuser/dev/my-app/node_modules/express/lib/router/index.js:281
-Error: Failed to lookup view "error" in views directory "/Users/testuser/dev/my-app/views"
-    at Function.render (/Users/testuser/dev/my-app/node_modules/express/lib/application.js:580:17)
-    at ServerResponse.render (/Users/testuser/dev/my-app/node_modules/express/lib/response.js:1012:7)
-    at /Users/testuser/dev/my-app/app.js:40:7
-    at Layer.handle_error (/Users/testuser/dev/my-app/node_modules/express/lib/router/layer.js:71:5)
-    at trim_prefix (/Users/testuser/dev/my-app/node_modules/express/lib/router/index.js:315:13)
-    at /Users/testuser/dev/my-app/node_modules/express/lib/router/index.js:284:7
-    at Function.process_params (/Users/testuser/dev/my-app/node_modules/express/lib/router/index.js:335:12)
-    at next (/Users/testuser/dev/my-app/node_modules/express/lib/router/index.js:275:10)
-    at Layer.handle [as handle_request] (/Users/testuser/dev/my-app/node_modules/express/lib/router/layer.js:95:5)
+[2023-10-25T12:00:00.000Z] INFO (MyApp/12345 on web-server-01): Server started on port 3000
+[2023-10-25T12:00:01.000Z] INFO (MyApp/12345 on web-server-01): Loading configuration from environment...
+[2023-10-25T12:00:02.000Z] INFO (MyApp/12345 on web-server-01): Database connection pool initialized.
+[2023-10-25T12:00:05.000Z] INFO (MyApp/12345 on web-server-01): Database connected successfully to postgres://admin:db_pass_123@db.internal:5432/myapp
+[2023-10-25T12:01:10.000Z] DEBUG (MyApp/12345 on web-server-01): Cache hit for key 'settings:global'
+[2023-10-25T12:01:12.000Z] DEBUG (MyApp/12345 on web-server-01): Incoming request to /api/health from 10.0.0.55
+[2023-10-25T12:01:12.100Z] INFO (MyApp/12345 on web-server-01): Response 200 OK for /api/health
+[2023-10-25T12:02:15.000Z] DEBUG (MyApp/12345 on web-server-01): Incoming request to /api/users from 192.168.1.100
+[2023-10-25T12:02:15.500Z] INFO (MyApp/12345 on web-server-01): User authentication initiated for user 'test.user+alias@gmail.com'
+[2023-10-25T12:02:16.000Z] INFO (MyApp/12345 on web-server-01): Auth successful. Assigning token.
+[2023-10-25T12:03:00.000Z] DEBUG (MyApp/12345 on web-server-01): Event loop lag is 5ms. System healthy.
+[2023-10-25T12:04:10.000Z] DEBUG (MyApp/12345 on web-server-01): Incoming request to /api/health from 10.0.0.55
+[2023-10-25T12:04:10.100Z] INFO (MyApp/12345 on web-server-01): Response 200 OK for /api/health
+[2023-10-25T12:05:00.000Z] WARN (MyApp/12345 on web-server-01): Rate limit approaching for IP 203.0.113.42 (85/100 requests)
+[2023-10-25T12:05:05.000Z] DEBUG (MyApp/12345 on web-server-01): Cache miss for key 'user:9876:profile'
+[2023-10-25T12:05:06.000Z] INFO (MyApp/12345 on web-server-01): Fetched profile for user:9876 from DB.
+[2023-10-25T12:06:00.000Z] DEBUG (MyApp/12345 on web-server-01): Running background cron job 'cleanup-sessions'
+[2023-10-25T12:06:01.000Z] INFO (MyApp/12345 on web-server-01): Deleted 450 expired sessions.
+[2023-10-25T12:07:10.000Z] DEBUG (MyApp/12345 on web-server-01): Incoming request to /api/health from 10.0.0.55
+[2023-10-25T12:07:10.100Z] INFO (MyApp/12345 on web-server-01): Response 200 OK for /api/health
+[2023-10-25T12:08:22.000Z] DEBUG (MyApp/12345 on web-server-01): Incoming request to /api/checkout from 203.0.113.42
+[2023-10-25T12:08:22.500Z] INFO (MyApp/12345 on web-server-01): Processing payment for cart_id: 88291
+[2023-10-25T12:08:23.000Z] DEBUG (MyApp/12345 on web-server-01): External API call to Stripe API initialized...
+[2023-10-25T12:08:24.000Z] INFO (MyApp/12345 on web-server-01): Stripe payment processed successfully.
+[2023-10-25T12:09:10.000Z] DEBUG (MyApp/12345 on web-server-01): Incoming request to /api/health from 10.0.0.55
+[2023-10-25T12:09:10.100Z] INFO (MyApp/12345 on web-server-01): Response 200 OK for /api/health
+[2023-10-25T12:09:55.000Z] DEBUG (MyApp/12345 on web-server-01): Incoming request to /api/oauth/google/callback from 74.125.200.100
+[2023-10-25T12:09:56.000Z] INFO (MyApp/12345 on web-server-01): Exchanging Google Auth code for token...
+[2023-10-25T12:10:00.000Z] ERROR (MyApp/12345 on web-server-01): 
+    Unhandled Promise Rejection
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at AuthProvider.login (/app/src/auth.js:22:15)
+    at async LoginController.handleOAuth (/app/src/controllers/login.js:14:20)
+    at async Route.handler (/app/node_modules/express/lib/router/route.js:112:3)
+    at async Layer.handle [as handle_request] (/app/node_modules/express/lib/router/layer.js:95:5)
+    at async next (/app/node_modules/express/lib/router/route.js:137:13)
+    at async cors (/app/node_modules/cors/lib/index.js:188:7)
+Context payload:
+{"user_id": 9876, "session": "{\"auth_token\":\"ya29.a0AfB_byCdefGHIJKLMNOPQRSTUVWXYZ\",\"device_id\":\"00:1B:44:11:3A:B7\", \"jwt\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\"}"}
+{"message": "Failed saving to Redis", "redis_uri": "redis://default:redispw@localhost:6379", "query": "SET user:9876:session"}
+[2023-10-25T12:10:01.000Z] INFO (MyApp/12345 on web-server-01): Attempting to gracefully shut down due to uncaught exception...
+[2023-10-25T12:10:02.000Z] WARN (MyApp/12345 on web-server-01): Closing HTTP server...
+[2023-10-25T12:10:03.000Z] WARN (MyApp/12345 on web-server-01): HTTP server closed.
+[2023-10-25T12:10:04.000Z] INFO (MyApp/12345 on web-server-01): Closing database connections...
+[2023-10-25T12:10:05.000Z] ERROR (MyApp/12345 on web-server-01): Failed to close database connection cleanly
+    at Database.close (/app/src/db.js:105:11)
+    at App.shutdown (/app/src/app.js:45:18)
+    at process.<anonymous> (/app/src/server.js:88:5)
+[2023-10-25T12:10:06.000Z] FATAL (MyApp/12345 on web-server-01): Process exiting with code 1
