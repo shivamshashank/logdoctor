@@ -26,7 +26,7 @@ It focuses on three core pillars:
 
 #  Demo
 
-<video src="docs/demo.mov" controls="controls" autoplay="autoplay" loop="loop" muted="muted" width="100%"></video>
+<video src="https://github.com/user-attachments/assets/b7fc5eb9-58d6-46e2-a296-ddde46b4831c" controls="controls" autoplay="autoplay" loop="loop" muted="muted" width="100%"></video>
 
 ---
 
