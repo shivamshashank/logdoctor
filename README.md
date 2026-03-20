@@ -63,14 +63,12 @@ Automatically detects, un-stringifies, and beautifully formats nested JSON logs 
 
 # ⚙️ Installation
 
-<details>
-<summary>Install LogDoctor (Recommended)</summary>
-
 Requires [Node.js v18+](https://nodejs.org/).
 
-**macOS / Linux**
+### Option 1: Quick Install (macOS / Linux)
+You can install LogDoctor instantly using our install script:
 ```bash
-npm install -g logdoctor-cli
+curl -fsSL https://raw.githubusercontent.com/shivamshashank/logdoctor/main/install.sh | bash
 ```
 
 **Windows (PowerShell)**
