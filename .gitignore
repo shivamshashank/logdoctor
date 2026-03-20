@@ -1,21 +1,8 @@
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-env/
-venv/
-pip-wheel-metadata/
-.idea/
+# Dependencies
+node_modules/
 
-# Node
-frontend/node_modules/
-frontend/.next/
-frontend/out/
-npm-debug.log
-yarn-error.log
+# Local configuration
+.logdoctor/
 
-# OS
+# macOS
 .DS_Store
-Thumbs.db

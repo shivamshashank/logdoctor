@@ -1,0 +1,38 @@
+{"log":"Starting container instance id: 8f92bd3a...","stream":"stdout","time":"2023-10-25T11:59:58Z"}
+{"log":"Loading configuration from environment variables...","stream":"stdout","time":"2023-10-25T11:59:59Z"}
+{"log":"[init] Bootstrapping core modules","stream":"stdout","time":"2023-10-25T11:59:59Z"}
+{"log":"[init] Connecting to cache cluster...","stream":"stdout","time":"2023-10-25T12:00:00Z","attrs":"{\"redis_uri\":\"redis://admin:superSecretPassword@redis.local:6379\",\"retries\":3}"}
+{"log":"[init] Cache cluster connected successfully","stream":"stdout","time":"2023-10-25T12:00:01Z"}
+{"log":"[init] Connecting to primary database...","stream":"stdout","time":"2023-10-25T12:00:02Z"}
+{"log":"[init] Database connected. Running migrations...","stream":"stdout","time":"2023-10-25T12:00:03Z"}
+{"log":"[init] Migrations up to date. No changes needed.","stream":"stdout","time":"2023-10-25T12:00:04Z"}
+{"log":"Worker thread 1 started. Processing job queue...","stream":"stdout","time":"2023-10-25T12:01:00Z"}
+{"log":"Worker thread 2 started. Processing job queue...","stream":"stdout","time":"2023-10-25T12:01:00Z"}
+{"log":"Worker thread 3 started. Processing job queue...","stream":"stdout","time":"2023-10-25T12:01:00Z"}
+{"log":"Job 90123 completed successfully in 45ms.","stream":"stdout","time":"2023-10-25T12:02:15Z"}
+{"log":"Job 90124 completed successfully in 32ms.","stream":"stdout","time":"2023-10-25T12:02:16Z"}
+{"log":"Job 90125 completed successfully in 12ms.","stream":"stdout","time":"2023-10-25T12:02:17Z"}
+{"log":"Heartbeat check OK. Memory usage: 156MB.","stream":"stdout","time":"2023-10-25T12:03:00Z"}
+{"log":"Job 90126 completed successfully in 40ms.","stream":"stdout","time":"2023-10-25T12:03:15Z"}
+{"log":"Job 90127 completed successfully in 55ms.","stream":"stdout","time":"2023-10-25T12:03:22Z"}
+{"log":"Heartbeat check OK. Memory usage: 158MB.","stream":"stdout","time":"2023-10-25T12:04:00Z"}
+{"log":"User login failed. Invalid credentials.","stream":"stderr","time":"2023-10-25T12:05:00Z","attrs":"{\"email\":\"admin@company.com\",\"ip\":\"203.0.113.42\", \"password_attempt\": \"myWrongPassword123\"}"}
+{"log":"User login failed. Invalid credentials.","stream":"stderr","time":"2023-10-25T12:05:05Z","attrs":"{\"email\":\"admin@company.com\",\"ip\":\"203.0.113.42\", \"password_attempt\": \"anotherWrongPass\"}"}
+{"log":"Security alert: Multiple failed logins detected.","stream":"stderr","time":"2023-10-25T12:05:10Z"}
+{"log":"Job 90128 completed successfully in 20ms.","stream":"stdout","time":"2023-10-25T12:06:15Z"}
+{"log":"Heartbeat check OK. Memory usage: 160MB.","stream":"stdout","time":"2023-10-25T12:07:00Z"}
+{"log":"Job 90129 completed successfully in 30ms.","stream":"stdout","time":"2023-10-25T12:08:15Z"}
+{"log":"Heartbeat check OK. Memory usage: 161MB.","stream":"stdout","time":"2023-10-25T12:09:00Z"}
+{"log":"Initiating Stripe payment processing...","stream":"stdout","time":"2023-10-25T12:11:55Z"}
+{"log":"Stripe payment processing timeout. Upstream service did not respond in 5000ms.","stream":"stderr","time":"2023-10-25T12:12:00Z","attrs":"{\"stripe_key\":\"sk_live_51Habcdefghijklmnopqrstuvwxyz1234567890\", \"amount\": 5000, \"currency\": \"usd\", \"customer_ssn\": \"123-45-6789\"}"}
+{"log":"Retrying Stripe payment processing (1/3)...","stream":"stdout","time":"2023-10-25T12:12:05Z"}
+{"log":"Stripe payment processing timeout. Upstream service did not respond in 5000ms.","stream":"stderr","time":"2023-10-25T12:12:10Z","attrs":"{\"stripe_key\":\"sk_live_51Habcdefghijklmnopqrstuvwxyz1234567890\", \"amount\": 5000, \"currency\": \"usd\"}"}
+{"log":"WARNING: Memory pressure increasing.","stream":"stderr","time":"2023-10-25T12:13:00Z"}
+{"log":"Heartbeat check Warning. Memory usage: 850MB.","stream":"stdout","time":"2023-10-25T12:14:00Z"}
+{"log":"Container memory usage exceeded 90% threshold. Initiating GC.","stream":"stderr","time":"2023-10-25T12:15:00Z"}
+{"log":"GC failed to reclaim sufficient memory. Allocations failing.","stream":"stderr","time":"2023-10-25T12:15:00Z"}
+{"log":"FATAL: Javascript heap out of memory","stream":"stderr","time":"2023-10-25T12:15:01Z"}
+{"log":"OOM Killer invoked by Docker daemon","stream":"stderr","time":"2023-10-25T12:15:01Z"}
+{"log":"Sending SIGKILL to PID 1","stream":"stderr","time":"2023-10-25T12:15:01Z"}
+{"log":"Process exited with code 137","stream":"stderr","time":"2023-10-25T12:15:02Z"}
+{"log":"Container shutting down...","stream":"stdout","time":"2023-10-25T12:15:02Z"}
